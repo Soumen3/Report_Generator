@@ -2,11 +2,17 @@
 {% load static %}
 
 {% block title %}Upload File{% endblock title %}
+{% block css %}
+	<link rel="stylesheet" href={% static "css\upload_file.css" %}>
+{% endblock css %}
 
 {% block body %}
-	<h1>File Upload</h1>
-	<form action="" method="POST" enctype="multipart/form-data" >{% csrf_token %}
-		  {{form.as_p}}
-		<button type="submit" class = "btn btn-primary" >Submit</button>
-	</form>
+	<h4 class='page-heading'>File Upload</h4>
+	<div class="conatiner file-form">
+		<form action="" method="POST" enctype="multipart/form-data" >{% csrf_token %}
+			{{form.as_p}}
+			<button type="submit" class = "btn btn-primary" >Submit</button>
+		</form>
+	</div>
+	
 {% endblock body %}

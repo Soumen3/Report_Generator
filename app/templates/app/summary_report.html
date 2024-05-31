@@ -1,7 +1,11 @@
 {% extends "app/base.html" %}
+{% load static %}
 {% block title %}Summary Report{% endblock title %}
+{% block css %}
+	<link rel="stylesheet" href={% static "css/summary_report.css" %}>
+{% endblock css %}
 
 {% block body %}
-	<h1>Summary Report</h1>
-	<div>{{ summary|safe }}</div>
+	<h4 class='summary-heading'>Summary Report</h4>
+	<div class="summary-data">{{ summary|safe }}</div>
 {% endblock body %}

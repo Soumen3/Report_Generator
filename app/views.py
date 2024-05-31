@@ -3,6 +3,7 @@ from .forms import filesForm
 from django.contrib import messages
 import pandas as pd
 from .models import files
+import pathlib
 
 # Create your views here.
 def upload_file(request):
@@ -38,6 +39,8 @@ def summary_report(request, pk):
 
 	state_column = next((col for col in df.columns if 'state' in col.lower()), None)
 	dpd_column = next((col for col in df.columns if 'dpd' in col.lower()), None)
+	
+	
 	if state_column is None or dpd_column is None:
 		print('No column related to state or DPD found')
 		messages.error(request, 'No column related to state or DPD found')
@@ -47,6 +50,11 @@ def summary_report(request, pk):
 
 		# Convert the DataFrame to HTML to display it in your template
 		context['summary'] = summary.to_html(index=False)
+	
+	# delete the file 
+	# myFile.delete()
+	# pathlib.Path(myFile_path).unlink() 
+
 
 
 	return render(request, 'app/summary_report.html',context)
